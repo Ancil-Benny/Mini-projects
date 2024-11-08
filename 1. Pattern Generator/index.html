@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pyramid Generator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: black;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 90%; /* Responsive to fit in smaller screens */
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+    .controls {
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      font-size: 1rem;
+      background-color: white;
+      color: black;
+      border: none;
+      outline: none;
+      transition: 0.3s;
+    }
+    input:focus, button:hover {
+      background-color: grey;
+    }
+    .pyramid-output {
+      font-family: monospace;
+      font-size: calc(1.2rem + 0.2vw); /* Responsive font size */
+      white-space: pre;
+      margin-top: 20px;
+      transition: all 0.5s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .pyramid-output.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pyramid Generator</h1>
+    <div class="controls">
+      <input type="number" id="countInput" placeholder="Enter number of rows" min="1" max="20" value="8">
+      <input type="text" id="characterInput" placeholder="Enter character" maxlength="1" value="#">
+      <button id="invertedBtn">Inverted</button>
+      <button id="generateBtn">Generate Pyramid</button>
+    </div>
+    <div class="pyramid-output" id="pyramidOutput"></div>
+  </div>
+
+  <script>
+    const generateBtn = document.getElementById('generateBtn');
+    const invertedBtn = document.getElementById('invertedBtn');
+    const pyramidOutput = document.getElementById('pyramidOutput');
+    let inverted = true;
+
+    // Toggle inverted mode
+    invertedBtn.addEventListener('click', () => {
+      inverted = !inverted;
+      invertedBtn.textContent = inverted ? 'Inverted' : 'Normal';
+    });
+
+    // Generate pyramid
+    generateBtn.addEventListener('click', () => {
+      const countInput = document.getElementById('countInput');
+      const characterInput = document.getElementById('characterInput');
+
+      // Ensure row count is within limits (min 1, max 20)
+      const count = Math.min(Math.max(parseInt(countInput.value), 1), 20);
+      const character = characterInput.value || '#';
+
+      const rows = [];
+
+      // Function to create a single row
+      function padRow(rowNumber, rowCount) {
+        const spaces = " ".repeat(rowCount - rowNumber);
+        const chars = character.repeat(2 * rowNumber - 1);
+        return spaces + chars + spaces;
+      }
+
+      // Create pyramid rows
+      for (let i = 1; i <= count; i++) {
+        if (inverted) {
+          rows.unshift(padRow(i, count));
+        } else {
+          rows.push(padRow(i, count));
+        }
+      }
+
+      // Create the pyramid string
+      let result = "";
+      for (const row of rows) {
+        result += "\n" + row;
+      }
+
+      // Display the pyramid with animation
+      pyramidOutput.textContent = result;
+      pyramidOutput.classList.remove('show'); // Reset animation
+      setTimeout(() => pyramidOutput.classList.add('show'), 100);
+    });
+  </script>
+</body>
+</html>
