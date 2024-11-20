@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Application</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <nav class="black">
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">Blog Application</a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <% if (user) { %>
+            <li><a href="#" class="user-info"><%= user.username %> (<%= user.email %>)</a></li>
+          <% } %>
+        </ul>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <% if (user) { %>
+            <li><a href="/users/logout">Logout</a></li>
+            <li><a href="/posts/create">Create Post</a></li>
+            <li><a href="/files/export/excel">Export to Excel</a></li>
+          <% } else { %>
+            <li><a href="/users/login" class="btn waves-effect waves-light red">Login</a></li>
+            <li><a href="/users/signup" class="btn waves-effect waves-light red">Sign Up</a></li>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main class="container">
+    <form action="/posts/search" method="get">
+      <div class="input-field">
+        <input id="search" type="text" name="query" placeholder="Search posts">
+        <label for="search"></label>
+      </div>
+      <button class="btn waves-effect waves-light black" type="submit">Search</button>
+    </form>
+    <ul class="collection">
+      <% posts.forEach(post => { %>
+        <li class="collection-item">
+          <h5><%= post.title %></h5>
+          <p><%= post.content %></p>
+          <p><strong>Author:</strong> <%= post.User.username %></p>
+          <% if (user && user.id === post.userId) { %>
+            <form action="/posts/<%= post.id %>/edit" method="get" style="display:inline;">
+              <button class="btn waves-effect waves-light black" type="submit">Edit</button>
+            </form>
+            <form action="/posts/<%= post.id %>?_method=DELETE" method="post" style="display:inline;">
+              <button class="btn waves-effect waves-light red" type="submit">Delete</button>
+            </form>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

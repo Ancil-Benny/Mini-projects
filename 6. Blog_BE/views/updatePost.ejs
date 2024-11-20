@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Post</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <nav class="black">
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">Update Post</a>
+      </div>
+    </nav>
+  </header>
+  <main class="container">
+    <div class="row">
+      <form class="col s12" action="/posts/<%= post.id %>?_method=PUT" method="post">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="title" type="text" name="title" value="<%= post.title %>" class="validate" required>
+            <label for="title" class="active">Title</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea id="content" name="content" class="materialize-textarea" required><%= post.content %></textarea>
+            <label for="content" class="active">Content</label>
+          </div>
+        </div>
+        <button class="btn waves-effect waves-light black" type="submit">Update</button>
+      </form>
+    </div>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
