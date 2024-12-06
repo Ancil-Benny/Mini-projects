@@ -3,16 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Mode</title>
+    <title>Day and Night Mode</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav>
-
+            <h1>Day and Night Mode</h1>
+            <button id="toggle-button" class="material-icons">brightness_4</button>
         </nav>
     </header>
-    <main></main>
-    <footer></footer>
+    <main>
+        <section>
+            <h2 id="main-heading">Day</h2>
+            <p id="main-content">The sun is shining, and it's a beautiful day!</p>
+        </section>
+        <section>
+            <h2>Activities</h2>
+            <p id="activities-content">Enjoy outdoor activities like hiking, biking, and picnics during the day.</p>
+        </section>
+        <section>
+            <h2>Weather</h2>
+            <p id="weather-content">Daytime weather is usually warm and sunny.</p>
+        </section>
+        <section>
+            <h2>Icons</h2>
+            <p id="icons-content">
+                <span class="material-icons">wb_sunny</span>
+                <span class="material-icons">directions_bike</span>
+                <span class="material-icons">local_florist</span>
+            </p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 blanc</p>
+    </footer>
+    <script src="scripts.js"></script>
 </body>
 </html>
