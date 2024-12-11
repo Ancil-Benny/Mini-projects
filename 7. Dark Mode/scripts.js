@@ -7,31 +7,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const weatherContent = document.getElementById('weather-content');
     const iconsContent = document.getElementById('icons-content');
 
-    // Set initial mode based on local storage or default to light mode
-    if (localStorage.getItem('theme') === 'dark') {
-        body.classList.add('dark-mode');
-        toggleButton.textContent = 'brightness_7';
-        updateContent('dark');
-    } else {
-        body.classList.add('light-mode');
-        toggleButton.textContent = 'brightness_4';
-        updateContent('light');
+    try {
+        if (localStorage.getItem('theme') === 'dark') {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+    } catch (error) {
+        console.error("Error accessing localStorage:", error);
+        setLightMode(); 
     }
 
     toggleButton.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        body.classList.toggle('light-mode');
-
         if (body.classList.contains('dark-mode')) {
-            toggleButton.textContent = 'brightness_7';
-            localStorage.setItem('theme', 'dark');
-            updateContent('dark');
+            setLightMode();
+            try {
+                localStorage.setItem('theme', 'light');
+            } catch (error) {
+                console.error("Error saving to localStorage:", error);
+            }
         } else {
-            toggleButton.textContent = 'brightness_4';
-            localStorage.setItem('theme', 'light');
-            updateContent('light');
+            setDarkMode();
+            try {
+                localStorage.setItem('theme', 'dark');
+            } catch (error) {
+                console.error("Error saving to localStorage:", error);
+            }
         }
     });
+
+    function setDarkMode() {
+        body.classList.add('dark-mode');
+        body.classList.remove('light-mode');
+        toggleButton.textContent = 'brightness_7';
+        toggleButton.setAttribute('aria-label', 'Switch to light mode');
+        updateContent('dark');
+    }
+
+    function setLightMode() {
+        body.classList.add('light-mode');
+        body.classList.remove('dark-mode');
+        toggleButton.textContent = 'brightness_4';
+        toggleButton.setAttribute('aria-label', 'Switch to dark mode');
+        updateContent('light');
+    }
 
     function updateContent(mode) {
         if (mode === 'dark') {
@@ -40,9 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
             activitiesContent.textContent = 'Relax and stargaze at night.';
             weatherContent.textContent = 'Nighttime weather can be cool and calm.';
             iconsContent.innerHTML = `
-                <span class="material-icons">nights_stay</span>
-                <span class="material-icons">star</span>
-                <span class="material-icons">bedtime</span>
+                <span class="material-icons" aria-hidden="true">nights_stay</span>
+                <span class="material-icons" aria-hidden="true">star</span>
+                <span class="material-icons" aria-hidden="true">bedtime</span>
             `;
         } else {
             mainHeading.textContent = 'Day';
@@ -50,9 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
             activitiesContent.textContent = 'Enjoy outdoor activities like hiking, biking, and picnics during the day.';
             weatherContent.textContent = 'Daytime weather is usually warm and sunny.';
             iconsContent.innerHTML = `
-                <span class="material-icons">wb_sunny</span>
-                <span class="material-icons">directions_bike</span>
-                <span class="material-icons">local_florist</span>
+                <span class="material-icons" aria-hidden="true">wb_sunny</span>
+                <span class="material-icons" aria-hidden="true">directions_bike</span>
+                <span class="material-icons" aria-hidden="true">local_florist</span>
             `;
         }
     }

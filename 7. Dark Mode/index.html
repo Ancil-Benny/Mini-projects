@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A web app with day and night modes, showcasing activities and weather info.">
     <title>Dark Mode Web</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
@@ -12,26 +13,27 @@
         <nav>
             <h1 id="main-heading">Day</h1>
         </nav>
-        <button id="toggle-button" class="material-icons">brightness_4</button>
+        <button id="toggle-button" class="material-icons" aria-label="Toggle Dark Mode">brightness_4</button>
     </header>
     <main>
-        <section>
+        <section aria-labelledby="intro-section">
+            <h2 id="intro-section">Introduction</h2>
             <p id="main-content">The sun is shining, and it's a beautiful day!</p>
         </section>
-        <section>
-            <h2>Activities</h2>
+        <section aria-labelledby="activities-section">
+            <h2 id="activities-section">Activities</h2>
             <p id="activities-content">Enjoy outdoor activities like hiking, biking, and picnics during the day.</p>
         </section>
-        <section>
-            <h2>Weather</h2>
+        <section aria-labelledby="weather-section">
+            <h2 id="weather-section">Weather</h2>
             <p id="weather-content">Daytime weather is usually warm and sunny.</p>
         </section>
-        <section>
-            <h2>Icons</h2>
+        <section aria-labelledby="icons-section">
+            <h2 id="icons-section">Icons</h2>
             <p id="icons-content">
-                <span class="material-icons">wb_sunny</span>
-                <span class="material-icons">directions_bike</span>
-                <span class="material-icons">local_florist</span>
+                <span class="material-icons" aria-hidden="true">wb_sunny</span>
+                <span class="material-icons" aria-hidden="true">directions_bike</span>
+                <span class="material-icons" aria-hidden="true">local_florist</span>
             </p>
         </section>
     </main>

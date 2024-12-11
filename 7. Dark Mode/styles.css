@@ -5,6 +5,12 @@ body {
     transition: background-color 0.5s, color 0.5s;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none;
+    }
+}
+
 header {
     background-color: #f0f0f0;
     color: #000;
@@ -18,20 +24,23 @@ header {
 
 nav h1 {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 #toggle-button {
     background: none;
     border: none;
     color: #000;
-    font-size: 1.5rem;
+    font-size: 2rem;
     cursor: pointer;
     transition: transform 0.3s;
 }
 
-#toggle-button:hover {
+#toggle-button:hover,
+#toggle-button:focus {
     transform: rotate(180deg);
+    outline: 2px solid #007BFF;
+    border-radius: 50%;
 }
 
 main {
@@ -74,4 +83,18 @@ body.dark-mode footer {
 
 body.dark-mode #toggle-button {
     color: #fff;
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 1rem;
+    }
+
+    nav h1 {
+        font-size: 1.2rem;
+    }
+
+    #toggle-button {
+        font-size: 1.5rem;
+    }
 }
