@@ -1,0 +1,40 @@
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mcard{
+    display: flex;
+    flex-direction: column;
+    padding:15px 25px;
+    width: 30%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.14), 
+    0px 3px 4px rgba(0, 0, 0, 0.12), 
+    0px 1px 5px rgba(0, 0, 0, 0.2);
+
+}
+h1{
+    margin: 10px;
+}
+#diceinp{
+    margin: 10px;
+    width: 100px;
+}
+#submit{
+    background-color: black;
+    color: #fff;
+   padding: 4px 10px;
+   border-radius: 10px;
+   border: 1px solid black;
+}
+#diceimg{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+#d1, #d2, #d3, #d4, #d5, #d6{
+    width: 50px;
+}
