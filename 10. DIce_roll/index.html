@@ -10,18 +10,11 @@
     <section class="mcard">
         <h1>Dice Roller</h1>
         <label for="diceinp"># for Dice: <input type="number" id="diceinp">
-            <button id="submit">Submit</button>
+            <button id="submit" onclick=rollDice()>Submit</button>
         </label>
      
         <p id="dicenum"></p>
-        <div id="diceimg">
-            <img src="Dices/d1.png" alt="Dice 1" id="d1" style="display: none;">
-            <img src="Dices/d2.png" alt="Dice 2" id="d2" style="display: none;">
-            <img src="Dices/d3.png" alt="Dice 3" id="d3" style="display: none;">
-            <img src="Dices/d4.png" alt="Dice 4" id="d4" style="display: none;">
-            <img src="Dices/d5.png" alt="Dice 5" id="d5" style="display: none;">
-            <img src="Dices/d6.png" alt="Dice 6" id="d6" style="display: none;">
-        </div>
+        <div id="diceimg"> </div>
     </section>
     <script src="script.js"></script>
 </body>
