@@ -34,7 +34,10 @@ h1{
     flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: wrap;
+  
+    gap: 10px;
+    padding: 10px;
 }
-#d1, #d2, #d3, #d4, #d5, #d6{
+#diceimg img{
     width: 50px;
 }
